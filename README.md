@@ -9,7 +9,7 @@ When you must type commands you can either have caps lock on or off. The program
 
 # List of Commands:
  
- **COMMANDS** - shows this command list
+ **COMMANDS** - shows this command list  
  **QUIT**     - will exit the game                           
  **DISPLAY**  - displays your farm and energy                
  **SHOP**     - buy and sell goods at the shop               
