@@ -10,8 +10,8 @@ When you must type commands you can either have caps lock on or off (your prefer
 
 You must keep track of the plants you watered as the game won't tell you! When a plant is still young it's icon will be the lowercase of the first character of that plants name. It will be ready to harvest when the icon is capital. 
  
- **|-|** means the plot is empty and untilled 
- **|~|** means the plot is tilled 
+ **| - |** means the plot is empty and untilled.   
+ **| ~ |** means the plot is tilled.   
  
 
 # List of Commands:
