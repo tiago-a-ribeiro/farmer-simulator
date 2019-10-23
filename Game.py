@@ -41,7 +41,7 @@ items = {
     'BLUEBERRY SEED'  : Seed("BLUEBERRY SEED",  10,  plants['BLUEBERRY']),
     'STRAWBERRY SEED' : Seed("STRAWBERRY SEED", 5,   plants['STRAWBERRY']),
     'RASPBERRY SEED'  : Seed("RASPBERRY SEED",  3,   plants['RASPBERRY']),
-    'CORN SEED'       : Seed("CORN SEED",       7,   plant['CORN'])
+    'CORN SEED'       : Seed("CORN SEED",       7,   plants['CORN']),
     'BLUEBERRIES'     : Food("BLUEBERRIES",  50, 15),
     'STRAWBERRIES'    : Food("STRAWBERRIES", 25, 10),
     'RASPBERRIES'     : Food("RASPBERRIES",  10, 8),
