@@ -2,7 +2,7 @@
 # I'm still trying to learn Python and I stuggled and learned quite a bit to make this program.
 # Can't wait to look back at this in 5 years and realise how little I actually knew, and see how much I've grown since.
 # 
-# Farmer Simulator v0.1
+# Farmer Simulator Beta Version - 0.1
 # In this Farmer Simulator program you are a simple virtual farmer that will use commands
 # to buy goods to be able to grow, harvest and sell crops to upgrade and pimp out your farm. 
 
