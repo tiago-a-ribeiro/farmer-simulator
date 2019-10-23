@@ -16,8 +16,6 @@ from Food import Food
 from Shop import Shop
 import copy
 
-# This code only a little messy ;-;
-
 tasks = {
         "TILL" : 2,
         "PLANT" : 3,
@@ -28,22 +26,26 @@ tasks = {
 harvest = {
     'BLUEBERRIES'  : Food("BLUEBERRIES",  50, 15),
     'STRAWBERRIES' : Food("STRAWBERRIES", 25, 10),
-    'RASPBERRIES'  : Food("RASPBERRIES",  10, 8)
+    'RASPBERRIES'  : Food("RASPBERRIES",  10, 8),
+    'CORN'         : Food("CORN",         35, 20)
 }
 
 plants = {
     'BLUEBERRY'  : Plant('BLUEBERRY',  ['b', 'B'],  8, harvest['BLUEBERRIES']),
     'STRAWBERRY' : Plant('STRAWBERRY', ['s', 'S'],  5, harvest['STRAWBERRIES']),
-    'RASPBERRY'  : Plant('RASPBERRY',  ['r', 'R'],  3, harvest['RASPBERRIES'])
+    'RASPBERRY'  : Plant('RASPBERRY',  ['r', 'R'],  3, harvest['RASPBERRIES']),
+    'CORN'       : Plant('CORN',       ['c', 'C'],  6, harvest['CORN'])
 }
 
 items = {
     'BLUEBERRY SEED'  : Seed("BLUEBERRY SEED",  10,  plants['BLUEBERRY']),
     'STRAWBERRY SEED' : Seed("STRAWBERRY SEED", 5,   plants['STRAWBERRY']),
     'RASPBERRY SEED'  : Seed("RASPBERRY SEED",  3,   plants['RASPBERRY']),
+    'CORN SEED'       : Seed("CORN SEED",       7,   plant['CORN'])
     'BLUEBERRIES'     : Food("BLUEBERRIES",  50, 15),
     'STRAWBERRIES'    : Food("STRAWBERRIES", 25, 10),
-    'RASPBERRIES'     : Food("RASPBERRIES",  10, 8)
+    'RASPBERRIES'     : Food("RASPBERRIES",  10, 8),
+    'CORN'            : Food("CORN",         35, 20)
 }
 
 
