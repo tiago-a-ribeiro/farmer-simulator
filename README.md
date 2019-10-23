@@ -2,9 +2,13 @@
 This is a simple little program I made to experiment with python and to have a little fun.
 
 Instructions:
-1) Run the "Game.py" with python3
+1) Make sure to have all .py files dowloaded in one folder/directory
+2) Run the "Game.py" with python3
+3) Enjoy the game!
 
-When you must type commands you can either have caps lock on or off. The program will convert the input to uppercase automatically. I recommend going to the shop at the beginning as a first step.
+When you must type commands you can either have caps lock on or off (your preference). The program will convert the input to uppercase automatically. I recommend going to the shop at the beginning as a first step and buying as many seeds as you can. If the shop happens to not be selling any seeds, don't worry. They're randomly generated every day so EXIT the shop and go to SLEEP, hopefully the shop will be selling seeds!
+
+You must keep track of the plants you watered as the game won't tell you! 
 
 
 # List of Commands:
