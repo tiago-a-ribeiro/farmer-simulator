@@ -2,7 +2,7 @@
 # I'm still trying to learn Python and I stuggled and learned quite a bit to make this program.
 # Can't wait to look back at this in 5 years and realise how little I actually knew, and see how much I've grown since.
 # 
-# Farmer Simulator Beta Version - 0.1
+# Farmer Simulator v0.1
 # In this Farmer Simulator program you are a simple virtual farmer that will use commands
 # to buy goods to be able to grow, harvest and sell crops to upgrade and pimp out your farm. 
 
@@ -16,6 +16,8 @@ from Food import Food
 from Shop import Shop
 import copy
 
+# This code only a little messy ;-;
+
 tasks = {
         "TILL" : 2,
         "PLANT" : 3,
@@ -27,25 +29,30 @@ harvest = {
     'BLUEBERRIES'  : Food("BLUEBERRIES",  50, 15),
     'STRAWBERRIES' : Food("STRAWBERRIES", 25, 10),
     'RASPBERRIES'  : Food("RASPBERRIES",  10, 8),
-    'CORN'         : Food("CORN", 35, 20)
+    'CORN'         : Food("CORN",         35, 20)
 }
 
 plants = {
     'BLUEBERRY'  : Plant('BLUEBERRY',  ['b', 'B'],  8, harvest['BLUEBERRIES']),
     'STRAWBERRY' : Plant('STRAWBERRY', ['s', 'S'],  5, harvest['STRAWBERRIES']),
     'RASPBERRY'  : Plant('RASPBERRY',  ['r', 'R'],  3, harvest['RASPBERRIES']),
-    'CORN'       : Plant('CORN', ['c', 'C'],  6, harvest['CORN'])
+    'CORN'       : Plant('CORN',       ['c', 'C'],  6, harvest['CORN'])
 }
 
+#put this in a json, learn that
 items = {
-    'BLUEBERRY SEED'  : Seed("BLUEBERRY SEED",  10,  plants['BLUEBERRY']),
-    'STRAWBERRY SEED' : Seed("STRAWBERRY SEED", 5,   plants['STRAWBERRY']),
-    'RASPBERRY SEED'  : Seed("RASPBERRY SEED",  3,   plants['RASPBERRY']),
-    'CORN SEED'       : Seed("CORN SEED", 7,   plants['CORN']),
-    'BLUEBERRIES'     : Food("BLUEBERRIES",  50, 15),
-    'STRAWBERRIES'    : Food("STRAWBERRIES", 25, 10),
-    'RASPBERRIES'     : Food("RASPBERRIES",  10, 8),
-    'CORN'            : Food("CORN", 35, 20)
+    'seeds' : {
+        'BLUEBERRY SEED'  : Seed("BLUEBERRY SEED",  10,  plants['BLUEBERRY']),
+        'STRAWBERRY SEED' : Seed("STRAWBERRY SEED", 5,   plants['STRAWBERRY']),
+        'RASPBERRY SEED'  : Seed("RASPBERRY SEED",  3,   plants['RASPBERRY']),
+        'CORN SEED'       : Seed("CORN SEED",       7,   plants['CORN']),
+    },
+    'food' : {
+        'BLUEBERRIES'     : Food("BLUEBERRIES",  50, 15),
+        'STRAWBERRIES'    : Food("STRAWBERRIES", 25, 10),
+        'RASPBERRIES'     : Food("RASPBERRIES",  10, 8),
+        'CORN'            : Food("CORN",         35, 20)
+    }
 }
 
 def input_error():
@@ -106,7 +113,7 @@ def game():
     farm = Farm(5, 3)
     player = Player()
     shop = Shop()
-    shop.generate_inventory(items)
+    shop.generate_inventory(items['seeds'])
 
     display_commands()
 
@@ -115,25 +122,26 @@ def game():
     player.display_gold()
     player.display_inventory([])
 
-    def boxing(task):
+    def boxing(task, item=None):
+                 
         print("Please choose a starting plot")
         start = get_input()
         if farm.has_position(start):
             print("Please choose an ending point")
             end = get_input()
 
-            valid_positions = farm.has_position(start) and farm.has_position(end)
-
-            #Check if those positions are valid
-            if valid_positions:
+        valid_positions = farm.has_position(start) and farm.has_position(end)
+                #Check if those positions are valid
+        if valid_positions:
                 #Check if player has energy to perform that many tills
-                consumption = farm.get_boxconsumption(start, end, tasks[task])
-                if player.has_energy(consumption):
-                    if farm.box(start, end, task):
-                        player.consume_energy(consumption)
+            consumption = farm.get_boxconsumption(start, end, tasks[task])
+            if player.has_energy(consumption):
+                if farm.box(start, end, task, item):
+                    player.consume_energy(consumption)
 
     
     while (True):
+        print("So what would you like to do? (type a COMMAND)")
         command = get_input()
 
         if (command == "COMMANDS"):
@@ -172,8 +180,7 @@ def game():
                     to_plant = get_input()
                         
                     #Input has to be a seed first
-                    if to_plant in items: 
-                        #Check if player has seed in inventory
+                    if to_plant in items['seeds']: 
                         if player.inventory != [] and player.is_in_inventory(to_plant):
                             seed = player.get_inventory(to_plant)
                             # Checking if player has enough of that seed
@@ -209,13 +216,22 @@ def game():
         elif (command == "BOXWATER"):
             boxing("WATER")
 
-        elif (command == "BOXTILL"):
-            print("Eventually this will allow you to plant in a boxed area")
+        elif (command == "BOXPLANT"):
+            print("Please select a seed from your inventory (Make sure you have enough for the amount of plots you will plant on!)")
+            player.display_inventory(["seed"])
+            seed = get_input()
+            if seed in items['seeds']:
+                if player.is_in_inventory(seed):
+                    item = player.get_inventory(seed)
+                    boxing("PLANT", item)
+            else:
+                print("Item entered is not a seed!")
+            
             
         elif (command == 'SLEEP'):
             player.energy = 100
             farm.update()
-            shop.generate_inventory(items)
+            shop.generate_inventory(items['seeds'])
             print("You wake up feeling refreshed, ready to work hard another day!")
             farm.display()
             player.display_energy()
@@ -241,8 +257,8 @@ def game():
                     player.display_gold()
                     print("What do you want to buy?")
                     want = get_input()
-                    if want in items.keys() :
-                        the_item = copy.deepcopy(items[want])
+                    if want in items['seeds'].keys():
+                        the_item = copy.deepcopy(items['seeds'][want])
                         if want not in shop.get_inventory_names():
                             print("Woah there pal, I don't sell " + want)
                         else:

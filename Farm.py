@@ -81,7 +81,7 @@ class Farm:
 
         return consumptions * task
 
-    def box(self, start, end, task):
+    def box(self, start, end, task, item=None):
         y_start, x_start = self.get_yx(start)
         y_end, x_end = self.get_yx(end)
 
@@ -90,7 +90,8 @@ class Farm:
         x_max = max(x_start, x_end)
         x_min = min(x_start, x_end)
 
-        # Check first to see if you can boxtill
+        num_of_plots = 0
+        # Check first to see if you can do you box command
         for j in range(y_min, y_max+1):
             for i in range(x_min, x_max+1):
                 y_plot, x_plot = self.get_yx(self.plots[j][i].get_position())
@@ -101,6 +102,16 @@ class Farm:
                         if self.plots[j][i].get_is_tilled() or self.plots[j][i].get_has_plant():
                             print("You cannot till on the box you have given.")
                             return False
+                    if task == "PLANT":
+                        #If it isn't tilled or has a plant on it, can't box plant
+                        num_of_plots = num_of_plots + 1
+                        if not self.plots[j][i].get_is_tilled or self.plots[j][i].get_has_plant():
+                            print("You cannot till on the box you have given. There is either a plant in the way, or an untilled plot.")
+                            return False
+                        if item.get_quantity() < num_of_plots:
+                            print("You do not have enough of that seed")
+                            return False
+
 
         # If function doesnt return False, will till
         for j in range(y_min, y_max+1):
@@ -112,6 +123,10 @@ class Farm:
                         self.plots[j][i].till()
                     elif task == "WATER":
                         self.plots[j][i].water()
+                    elif task == "PLANT":
+                        plant = item.get_plant()
+                        self.plots[j][i].plant(plant)
+                        item.min_quantity(1)
         
         return True
 

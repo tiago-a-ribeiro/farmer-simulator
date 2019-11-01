@@ -1,7 +1,7 @@
-import copy
 from Item import Item
 from Plant import Plant
-from Food import Food 
+from Food import Food
+import copy
 
 class Seed(Item):
     def __init__(self, name, price, plant):
