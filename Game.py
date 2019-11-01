@@ -1,6 +1,5 @@
 # Code beautifully crafted by Tiago Ribeiro
 # I'm still trying to learn Python and I stuggled and learned quite a bit to make this program.
-# Can't wait to look back at this in 5 years and realise how little I actually knew, and see how much I've grown since.
 # 
 # Farmer Simulator v0.1
 # In this Farmer Simulator program you are a simple virtual farmer that will use commands
@@ -16,7 +15,6 @@ from Food import Food
 from Shop import Shop
 import copy
 
-# This code only a little messy ;-;
 
 tasks = {
         "TILL" : 2,
@@ -39,7 +37,6 @@ plants = {
     'CORN'       : Plant('CORN',       ['c', 'C'],  6, harvest['CORN'])
 }
 
-#put this in a json, learn that
 items = {
     'seeds' : {
         'BLUEBERRY SEED'  : Seed("BLUEBERRY SEED",  10,  plants['BLUEBERRY']),
@@ -74,7 +71,7 @@ def start():
     print("Welcome to Farmer Simulator v0.1 by Tiago Ribeiro!!! In this little program/game you will")
     print("get to till, water, plant and harvest on your own little virtual farm. This program is for me")
     print("to practice and experiment with python while also creating a (hopefully) fun game in the process")
-    print("(btw, the idea for this game was born out of my chronic addiction to Stardew Valley)")
+    print("(The idea for this game was born out of my chronic addiction to Stardew Valley!)")
     print("")
     print("Please type: 'PLAY' or 'QUIT'")
     
