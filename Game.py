@@ -307,7 +307,7 @@ def game():
                             else:
                                 to_sell.min_quantity(amount)
                                 player.add_gold(to_sell.get_price() * amount)
-                                print("You sold " + str(amount) + " " + to_sell.get_name() + "(s). You made $" + str(player.get_gold()))
+                                print("You sold " + str(amount) + " " + to_sell.get_name() + "(s). You made $" + str(to_sell.get_price() * amount))
                 
                 else:
                     print("Not quite sure what \'" + shop_input + "\' means")
