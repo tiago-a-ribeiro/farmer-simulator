@@ -71,7 +71,7 @@ def start():
     print("|   __| .'|  _|     | -_|  _|  |__   | |     | | | | .'|  _| . |  _|  | | | | |_ _| |_ ")
     print("|__|  |__,|_| |_|_|_|___|_|    |_____|_|_|_|_|___|_|__,|_| |___|_|     \_/|___|_|_____|")
     print("")
-    print("Welcome to Farmer Simulator v0.2 by Tiago Ribeiro!!! In this little program/game you will")
+    print("Welcome to Farmer Simulator v0.1 by Tiago Ribeiro!!! In this little program/game you will")
     print("get to till, water, plant and harvest on your own little virtual farm. This program is for me")
     print("to practice and experiment with python while also creating a (hopefully) fun game in the process")
     print("(btw, the idea for this game was born out of my chronic addiction to Stardew Valley)")
