@@ -27,7 +27,7 @@ You must keep track of the plants you watered as the game won't tell you! When a
  **BOXTILL**    - till from given start and end plot           
  **BOXPLANT**   - plant from given start and end plot          
  **BOXWATER**   - water from given start and end plot          
- **BOXHARVEST** - harvest all crops from given start and end plot
+ **BOXHARVEST** - harvest all crops from given start and end plot 
  **SLEEP**      - regain energy and update your plants     
  **UPGRADE**    - make upgrades to your farm
 
