@@ -83,8 +83,9 @@ class Plot:
         if self.has_plant:
             if self.is_watered:
                 self.item.grow()
-        #Unwater
+        #Unwater and untill
         self.is_watered = False
+        self.is_tilled = False
 
     def display(self):
         if self.is_tilled:

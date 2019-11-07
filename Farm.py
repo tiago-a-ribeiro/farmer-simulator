@@ -81,7 +81,7 @@ class Farm:
 
         return consumptions * task
 
-    def box(self, start, end, task, item=None):
+    def can_box(self, start, end, task, item=None):
         y_start, x_start = self.get_yx(start)
         y_end, x_end = self.get_yx(end)
 
@@ -111,8 +111,23 @@ class Farm:
                         if item.get_quantity() < num_of_plots:
                             print("You do not have enough of that seed")
                             return False
+                    if task == "HARVEST":
+                        if not self.plots[j][i].get_has_plant() or not self.plots[j][i].can_harvest():
+                            print("Cannot harvest between those two points, make sure all plots between those two points have a harvestable plant! (Can't have plots without plants)")
+                            return False
+        
+        return True
 
+    def box(self, start, end, task, item=None):
+        y_start, x_start = self.get_yx(start)
+        y_end, x_end = self.get_yx(end)
 
+        y_max = max(y_start, y_end)
+        y_min = min(y_start, y_end)
+        x_max = max(x_start, x_end)
+        x_min = min(x_start, x_end)
+
+        harvest = []
         # If function doesnt return False, will till
         for j in range(y_min, y_max+1):
             for i in range(x_min, x_max+1):
@@ -127,6 +142,12 @@ class Farm:
                         plant = item.get_plant()
                         self.plots[j][i].plant(plant)
                         item.min_quantity(1)
+                    elif task == "HARVEST":
+                        plant_harvest = self.plots[j][i].get_harvest()
+                        harvest.append(plant_harvest)
+        
+        if task == "HARVEST":
+            return harvest
         
         return True
 
@@ -158,6 +179,30 @@ class Farm:
     def can_harvest(self, position):
         y, x = self.get_yx(position)
         return self.plots[y][x].can_harvest()
+
+    def increase_width(self):
+        if self.width < 25:
+            for j in range(self.height):
+                position = num_to_alpha[self.width] + str(j)
+                self.positions.append(position)
+                self.plots[j].append(Plot(position))
+            self.width += 1
+            return True
+        else:
+            print("Farm is already at max width, cannot upgrade anymore!")
+            return False
+
+    def increase_height(self):
+        if self.height < 9:
+            self.plots.append([])
+            for i in range(self.width):
+                position = num_to_alpha[i] + str(self.height)
+                self.positions.append(position)
+                self.plots[self.height].append(Plot(position))
+            self.height += 1
+        else:
+            print("Farm is already at max width, cannot upgrade anymore!")
+            return False
 
     # Display function
     def display(self):
