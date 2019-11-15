@@ -16,7 +16,6 @@ from Food import Food
 from Shop import Shop
 import copy
 
-# This code only a little messy ;-;
 
 tasks = {
         "TILL" : 2,
@@ -39,7 +38,7 @@ plants = {
     'CORN'       : Plant('CORN',       ['c', 'C'],  6, harvest['CORN'])
 }
 
-#put this in a json, learn that
+
 items = {
     'seeds' : {
         'BLUEBERRY SEED'  : Seed("BLUEBERRY SEED",  10,  plants['BLUEBERRY']),
